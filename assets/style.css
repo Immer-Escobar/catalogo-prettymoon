@@ -1,0 +1,221 @@
+/* ============================================
+   VARIABLES — cambia colores aquí fácilmente
+   ============================================ */
+:root {
+  --crema:    #FAF6F1;
+  --rosa:     #D4808A;
+  --rosa-dark:#B5606A;
+  --carbon:   #2A2020;
+  --gris:     #7A6F6F;
+  --borde:    #EDE4DC;
+  --blanco:   #FFFFFF;
+  --sombra:   0 4px 24px rgba(42, 32, 32, 0.08);
+}
+
+/* ============================================
+   RESET Y BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--crema);
+  color: var(--carbon);
+  min-height: 100vh;
+}
+
+/* ============================================
+   ENCABEZADO
+   ============================================ */
+header {
+  background: var(--carbon);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--blanco);
+  letter-spacing: 0.04em;
+}
+
+.tagline {
+  color: var(--rosa);
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+/* ============================================
+   FILTROS
+   ============================================ */
+.filtros {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 2rem 1.5rem;
+  background: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+}
+
+.filtro {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.4rem;
+  border: 1.5px solid var(--borde);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gris);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filtro:hover {
+  border-color: var(--rosa);
+  color: var(--rosa);
+}
+
+.filtro.activo {
+  background: var(--carbon);
+  border-color: var(--carbon);
+  color: var(--blanco);
+}
+
+/* ============================================
+   CUADRÍCULA DE PRODUCTOS
+   ============================================ */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ============================================
+   TARJETA DE PRODUCTO
+   ============================================ */
+.tarjeta {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta-imagen {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--crema);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.tarjeta-cuerpo {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.tag-categoria {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosa);
+}
+
+.nombre-producto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--carbon);
+  line-height: 1.3;
+}
+
+.descripcion-producto {
+  font-size: 0.85rem;
+  color: var(--gris);
+  line-height: 1.5;
+}
+
+.precio-producto {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--carbon);
+  margin-top: 0.3rem;
+}
+
+.btn-whatsapp {
+  display: block;
+  margin-top: 0.8rem;
+  padding: 0.65rem 1rem;
+  background: var(--rosa);
+  color: var(--blanco);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+  background: var(--rosa-dark);
+}
+
+/* ============================================
+   ESTADO VACÍO (cuando no hay resultados)
+   ============================================ */
+.sin-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--gris);
+  font-size: 1rem;
+}
+
+/* ============================================
+   PIE DE PÁGINA
+   ============================================ */
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.82rem;
+  color: var(--gris);
+  border-top: 1px solid var(--borde);
+}
+
+/* ============================================
+   RESPONSIVE — pantallas pequeñas
+   ============================================ */
+@media (max-width: 480px) {
+  .logo { font-size: 1.8rem; }
+  .grid-productos { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+  .nombre-producto { font-size: 1.1rem; }
+}

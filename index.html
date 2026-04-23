@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo de Productos</title>
+
+    <!--Fuentes de Google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap">
+
+    <!--Estilos CSS-->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <h1 class="logo">Pretty Moon</h1>
+            <p class="tagline">Maquillaje para cada momento</p>
+        </div>
+    </header>
+
+    <!--Filtros-->
+    <section class="filtros">
+        <button class="filtro activo" data-categoria="todos">Todos</button>
+        <button class="filtro" data-categoria="labiales">Labiales</button>
+        <button class="filtro" data-categoria="bases">Bases</button>
+        <button class="filtro" data-categoria="ojos">Ojos</button>
+        <button class="filtro" data-categoria="rubores">Rubores</button>
+    </section>
+
+    <main>
+        <div class="grid-productos" id="grid-productos">
+            <!-- Los productos se generan aquí con JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Pretty Moon</p>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
