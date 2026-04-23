@@ -90,6 +90,14 @@ const productos = [
     descripcion: "Habia un sapo sapo que nadaba en el rio rio rioo.",
     precio: "$10.00",
     emoji: "🍑"
+  },
+  {
+    id: 11,
+    nombre: "Lionel Messi",
+    categoria: "bases",
+    descripcion: "Es el mejor jugador de todos los tiempos!!",
+    precio: "$10.00",
+    emoji: "🖊️"
   }
 ];
 
