@@ -122,15 +122,66 @@ main {
   box-shadow: var(--sombra);
 }
 
-.tarjeta-imagen {
+.carrusel {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  overflow: hidden;
   background: var(--crema);
+}
+
+.tarjeta-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  transition: background 0.2s ease;
+  z-index: 2;
+}
+
+.flecha:hover {
+  background: var(--blanco);
+}
+
+.flecha-izq { left: 8px; }
+.flecha-der { right: 8px; }
+
+.puntitos {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.puntito {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease;
+}
+
+.puntito.activo {
+  background: var(--blanco);
 }
 
 .tarjeta-cuerpo {
