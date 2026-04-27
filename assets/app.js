@@ -334,7 +334,7 @@ function mensajeWhatsApp(nombre, precio) {
 // ============================================
 // FUNCIÓN: Crear el HTML de una tarjeta
 // ============================================
-function crearTarjeta(){
+function crearTarjeta(producto){
   const tarjeta = document.createElement("div");
   tarjeta.className = "tarjeta";
 
@@ -396,7 +396,7 @@ function crearTarjeta(){
     </a>
   </div>
   `;
-  
+
   return tarjeta;
 }
 
