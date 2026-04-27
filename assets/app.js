@@ -76,7 +76,7 @@ const productos = [
     precio: "$12.00",
     img: [
       "img/Left on red tinta.jpg",
-      "img/Cherry Cola.jpg",
+      "img/Cherry Cola tinta.jpg",
       "img/Plums up tinta.jpg",
       "img/Pink positive tinta.jpg"
     ]
@@ -173,7 +173,7 @@ const productos = [
     precio: "$13.00",
     img: [
       "img/HD powder - Soft Luminance.jpg",
-      "img/HD powder - Traslucido.jpg"
+      "img/HD powder- Traslucido.jpg"
     ]
   },
   {
