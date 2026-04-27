@@ -334,71 +334,69 @@ function mensajeWhatsApp(nombre, precio) {
 // ============================================
 // FUNCIÓN: Crear el HTML de una tarjeta
 // ============================================
-function crearTarjeta(producto) {
+function crearTarjeta(){
   const tarjeta = document.createElement("div");
   tarjeta.className = "tarjeta";
 
   const tieneCarrusel = producto.img.length > 1;
-  let indiceActual = 0;
+  const carruselId = `carrusel-${producto.id}`;
 
-  //Construir los puntitos indicadores
+  //Construir los slides
+  const slides = producto.img.map((src, i) => `
+  <div class="carousel-item ${i === 0 ? 'active' : ''}">
+    <img src="${src} class="tarjeta-imagen" alt="${producto.nombre}" />
+  </div>
+  `).join("");
+
+  //Construir los puntitos
   const puntitos = producto.img.map((_, i) => `
-  <span class="puntito ${i === 0 ? 'activo' : ''}" data-index="${i}"></span>`).join("");
+    <button type="button"
+      data-bs-target="#${carruselId}"
+      data-bs-slide-to="${i}"
+      class="${i === 0 ? 'active' : ''}"
+      aria-current="${i === 0 ? 'true' : 'false'}">
+    </button>
+  `).join("");
 
-  // Construir las flechas solo si hay más de una imagen
+  //Flechas solo si hay mas de una imagen
   const flechas = tieneCarrusel ? `
-    <button class="flecha flecha-izq">&#8592;</button>
-    <button class="flecha flecha-der">&#8594;</button>
+    <button class="carousel-control-prev" type="button"
+      data-bs-target="#${carruselId}" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button"
+      data-bs-target="#${carruselId}" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
   ` : "";
 
-  // Construir los indicadores solo si hay más de una imagen
+  // Indicadores solo si hay más de una imagen
   const indicadores = tieneCarrusel ? `
-    <div class="puntitos">${puntitos}</div>
+    <div class="carousel-indicators">${puntitos}</div>
   ` : "";
 
   tarjeta.innerHTML = `
-  <div class="carrusel">
-  <img class="tarjeta-imagen" src="${producto.img[0]}" alt="${producto.nombre}">
-  ${flechas}
+  <div id="${carruselId}" class="carousel slide" data-bs-ride="false">
   ${indicadores}
+  <div class="carousel-inner">
+  ${slides}
   </div>
-    <div class="tarjeta-cuerpo">
-      <span class="tag-categoria">${producto.categoria}</span>
-      <h2 class="nombre-producto">${producto.nombre}</h2>
-      <p class="descripcion-producto">${producto.descripcion}</p>
-      <p class="precio-producto">${producto.precio}</p>
-      <a class="btn-whatsapp"
-         href="${mensajeWhatsApp(producto.nombre, producto.precio)}"
-         target="_blank"
-         rel="noopener noreferrer">
-        Pedir por WhatsApp
-      </a>
-    </div>
+  ${flechas}
+  </div>
+  <div class="tarjeta-cuerpo">
+    <span class="tag-categoria">${producto.categoria}</span>
+    <h2 class="nombre-producto">${producto.nombre}</h2>
+    <p class="descripcion-producto">${producto.descripcion}</p>
+    <p class="precio-producto">${producto.precio}</p>
+    <a class="btn-whatsapp"
+      href="${mensajeWhatsApp(producto.nombre, producto.precio)}"
+      target="_blank"
+      rel="noopener noreferrer">
+       Pedir por WhatsApp
+    </a>
+  </div>
   `;
-
-  // Lógica del carrusel (solo si tiene más de una imagen)
-  if (tieneCarrusel) {
-    const img = tarjeta.querySelector(".tarjeta-imagen");
-    const puntos = tarjeta.querySelectorAll(".puntito");
-
-    function actualizarCarrusel() {
-      img.src = producto.img[indiceActual];
-      puntos.forEach((p, i) => {
-        p.classList.toggle("activo", i === indiceActual);
-      });
-    }
-
-    tarjeta.querySelector(".flecha-izq").addEventListener("click", () => {
-      indiceActual = (indiceActual - 1 + producto.img.length) % producto.img.length;
-      actualizarCarrusel();
-    });
-
-    tarjeta.querySelector(".flecha-der").addEventListener("click", () => {
-      indiceActual = (indiceActual + 1) % producto.img.length;
-      actualizarCarrusel();
-    });
-  }
-
+  
   return tarjeta;
 }
 
