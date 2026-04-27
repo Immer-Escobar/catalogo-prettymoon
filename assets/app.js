@@ -376,7 +376,7 @@ function crearTarjeta(producto){
   ` : "";
 
   tarjeta.innerHTML = `
-  <div id="${carruselId}" class="carousel slide" data-bs-ride="false">
+  <div id="${carruselId}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${4000 + (producto.id % 3) * 1000}">
   ${indicadores}
   <div class="carousel-inner">
   ${slides}

@@ -143,6 +143,30 @@ main {
   background-size: 50%;
 }
 
+/*INDICADORES DEL CARRUSEL (puntitos)*/
+.carousel-indicators button {
+  background-color: #888888 !important;
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  border: none;
+  opacity: 1 !important;
+}
+
+.carousel-indicators button.active {
+  background-color: var(--rosa) !important;
+  width: 32px;
+}
+
+/*Para Flechas centradas*/
+.carousel-control-prev,
+.carousel-control-next {
+  top: 45%;
+  bottom: auto;
+  height: auto;
+  width: auto;
+}
+
 
 .tarjeta-imagen {
   width: 100%;
