@@ -335,7 +335,6 @@ function mensajeWhatsApp(nombre, precio) {
 // FUNCIÓN: Crear el HTML de una tarjeta
 // ============================================
 function crearTarjeta(producto) {
-  console.log(producto.nombre, producto.imagenes); // ← agrega esta línea
   const tarjeta = document.createElement("div");
   tarjeta.className = "tarjeta";
 
@@ -383,19 +382,19 @@ function crearTarjeta(producto) {
     const puntos = tarjeta.querySelectorAll(".puntito");
 
     function actualizarCarrusel() {
-      img.src = producto.imagenes[indiceActual];
+      img.src = producto.img[indiceActual];
       puntos.forEach((p, i) => {
         p.classList.toggle("activo", i === indiceActual);
       });
     }
 
     tarjeta.querySelector(".flecha-izq").addEventListener("click", () => {
-      indiceActual = (indiceActual - 1 + producto.imagenes.length) % producto.imagenes.length;
+      indiceActual = (indiceActual - 1 + producto.img.length) % producto.img.length;
       actualizarCarrusel();
     });
 
     tarjeta.querySelector(".flecha-der").addEventListener("click", () => {
-      indiceActual = (indiceActual + 1) % producto.imagenes.length;
+      indiceActual = (indiceActual + 1) % producto.img.length;
       actualizarCarrusel();
     });
   }
