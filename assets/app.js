@@ -344,7 +344,7 @@ function crearTarjeta(producto){
   //Construir los slides
   const slides = producto.img.map((src, i) => `
   <div class="carousel-item ${i === 0 ? 'active' : ''}">
-    <img src="${src} class="tarjeta-imagen" alt="${producto.nombre}" />
+    <img src="${src}" class="tarjeta-imagen" alt="${producto.nombre}" />
   </div>
   `).join("");
 
