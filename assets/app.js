@@ -227,7 +227,7 @@ const productos = [
     descripcion: "Cobertura completa que dura hasta 16 horas sin moverse.",
     precio: "$14.00",
     img: [
-      "img/"
+      "img/16 Concealer.jpg.jpeg"
     ]
   },
   {
@@ -313,7 +313,7 @@ const productos = [
   },
   {
     id: 29,
-    nombre: "Soft Glam Consealer",
+    nombre: "Soft Glam Concealer",
     categoria: "rostro",
     descripcion: "Corrige e ilumina con acabado suave y natural.",
     precio: "$12.00",
