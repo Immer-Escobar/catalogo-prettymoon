@@ -30,7 +30,7 @@ const productos = [
     precio: "$7.00",
     img: ["img/Cherry bomb.jpg", "img/Moody.jpg", "img/Black cherry.jpg"],
     colores: ["Cherry Bomb", "Moody", "Black Cherry"],
-    agotado: [false, false, false]
+    agotado: [false, true, false]
   },
   {
     id: 3,
