@@ -415,6 +415,7 @@ function crearTarjeta(producto) {
 // FUNCIÓN: Mostrar productos según categoría
 // ============================================
 function mostrarProductos(categoriaFiltro) {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   const grid = document.getElementById("grid-productos");
   grid.innerHTML = "";
 
