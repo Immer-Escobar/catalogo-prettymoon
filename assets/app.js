@@ -26,11 +26,11 @@ const productos = [
     id: 2,
     nombre: "Lip Lacquer",
     categoria: "labios",
-    descripcion: "Brillo intenso con color irresistible y efecto jugoso que realza tus labios al instante.",
+    descripcion: "Te da un brillo intenso con color irresistible y efecto jugoso que realza tus labios al instante.",
     precio: "$7.00",
     img: ["img/Cherry bomb.jpg", "img/Moody.jpg", "img/Black cherry.jpg"],
     colores: ["Cherry Bomb", "Moody", "Black Cherry"],
-    agotado: [false, true, false]
+    agotado: [false, false, false]
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const productos = [
     id: 4,
     nombre: "Multi-Stick",
     categoria: "rostro",
-    descripcion: "3-1 para labios, mejillas y ojos, facil de aplicar y perfecto para retoques rapidos.",
+    descripcion: "3-1 para labios, mejillas y ojos, facil de aplicar y perfecto para retoques rapidos.  ",
     precio: "$10.00",
     img: ["img/Bronzed cherry.jpg", "img/Sparkling rose.jpg", "img/Luminous berry.jpg", "img/Multistick Glimmering Guava.jpg"],
     colores: ["Bronzed Cherry", "Sparkling Rose", "Luminous Berry", "Glimmering Guava"],
@@ -404,7 +404,7 @@ function crearTarjeta(producto) {
       badgeSoldOut.style.display = "none";
       btnWa.classList.remove("btn-agotado");
       btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[e.to]);
-      btnWa.textContent = "Pedir por WhatsApp";
+      btnWa.innerHTML = 'Pedir por WhatsApp';
     }
   });
 
