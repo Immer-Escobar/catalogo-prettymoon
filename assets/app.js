@@ -367,9 +367,9 @@ function crearTarjeta(producto) {
       <div class="carousel-inner">
         ${slides}
       </div>
-      <div class="sold-out-badge-color" style="display:${primerColorAgotado ? 'flex' : 'none'}">Sold Out</div>
+      <div class="sold-out-badge-color" style="display:${primerColorAgotado ? 'flex' : 'none'}"></div>
       ${flechas}
-      ${todoAgotado ? '<div class="sold-out-badge">Sold Out</div>' : ''}
+      ${todoAgotado ? '<div class="sold-out-badge"></div>' : ''}
     </div>
     <div class="etiqueta-color">${producto.colores[0]}</div>
     <div class="tarjeta-cuerpo">
