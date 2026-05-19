@@ -41,12 +41,12 @@ body {
    ============================================ */
 header {
   background: linear-gradient(135deg, var(--lila) 0%, var(--lila) 50%, var(--morado) 100%);
-  padding: 1rem 1.5rem;
-  text-align: center;
+  padding: 1rem 1.5rem 0.8rem;
+  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; 
+  justify-content: center;
 
   position: sticky;
   top: 0;
@@ -61,11 +61,20 @@ header {
   object-fit: contain;
 }
 
+.header-inner {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 5rem;
+}
+
 .header-marca {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 #breadcrumbCategoria {
@@ -88,6 +97,7 @@ header {
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.04em;
+  margin: 0;
 }
 
 .logo-pretty {
@@ -102,13 +112,11 @@ header {
    FILTROS — visible en PC
    ============================================ */
 .filtros {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  padding: 2rem 1.5rem;
-  background: var(--blanco);
-  border-bottom: 1px solid var(--borde);
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  padding-right: 5rem;
 }
 
 .filtro {
@@ -147,13 +155,66 @@ header {
   display: none;
 }
 
+.filtro-pc-btn {
+  background: rgba(255,255,255,0.18);
+  border: none;
+  color: white;
+
+  padding: 0.7rem 1.2rem;
+
+  border-radius: 999px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  backdrop-filter: blur(10px);
+
+  transition: all 0.25s ease;
+}
+
+.filtro-pc-btn:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.filtro-pc-btn::after {
+  margin-left: 0.6rem;
+}
+
+.dropdown-pc .dropdown-menu {
+  border: none;
+  border-radius: 18px;
+
+  padding: 0.6rem;
+
+  background: white;
+
+  box-shadow:
+    0 10px 30px rgba(102,20,107,0.15);
+}
+
+.filtro-pc-item {
+  border-radius: 12px;
+
+  padding: 0.7rem 1rem;
+
+  font-family: 'Poppins', sans-serif;
+
+  transition: all 0.2s ease;
+}
+
+.filtro-pc-item:hover {
+  background: #f3d9ff;
+  color: var(--morado);
+}
+
 /* ============================================
    CUADRÍCULA DE PRODUCTOS
    ============================================ */
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 7rem 1.5rem 4rem;
+  padding: 5rem 1.5rem 4rem;
 }
 
 .grid-productos {
@@ -434,6 +495,14 @@ footer {
     display: none;
   }
 
+  .header-inner {
+    padding-left: 0 !important;
+  }
+
+  .filtros {
+    padding-right: 0 !important;
+  }
+
   /*Boton del dropdown*/
   .filtro-mobile {
     display: flex;
@@ -481,6 +550,10 @@ footer {
   .dropdown-item.activo-dropdown {
     background: rgba(255, 255, 255, 0.25) !important;
     color: var(--blanco) !important;
+  }
+
+  .dropdown-pc {
+    display: none !important;
   }
 
   /*Ocultar flechas e indicadores de carrusel*/
@@ -634,6 +707,10 @@ footer {
 
   .modal-producto-content {
     border-radius: 16px;
+  }
+
+  main {
+    padding-top: 2rem !important;
   }
 }
 

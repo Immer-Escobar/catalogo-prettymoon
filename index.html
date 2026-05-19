@@ -42,19 +42,21 @@
                 <li><a class="dropdown-item" data-categoria="skin">Skin Care</a></li>
             </ul>
         </div>
-    </header>
 
-    <!--Filtros-->
-    <section class="filtros">
-        <!--Botones para PC-->
-        <div class="filtro-botones">
-            <button class="filtro activo" data-categoria="todos">Todos</button>
-            <button class="filtro" data-categoria="labios">Labios</button>
-            <button class="filtro" data-categoria="rostro">Rostro</button>
-            <button class="filtro" data-categoria="ojos">Ojos</button>
-            <button class="filtro" data-categoria="skin">Skin Care</button>
-        </div>
-    </section>
+        <!--Filtros-->
+        <section class="filtros">
+            <!--Dropdown para PC-->
+            <div class="dropdown dropdown-pc">
+                <button class="filtro-pc-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Todos</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item filtro-pc-item" data-categoria="labios">Labios</a></li>
+                    <li><a class="dropdown-item filtro-pc-item" data-categoria="rostro">Rostro</a></li>
+                    <li><a class="dropdown-item filtro-pc-item" data-categoria="ojos">Ojos</a></li>
+                    <li><a class="dropdown-item filtro-pc-item" data-categoria="skin">Skin Care</a></li>
+                </ul>
+            </div>
+        </section>
+    </header>
 
     <main>
         <div class="grid-productos" id="grid-productos">

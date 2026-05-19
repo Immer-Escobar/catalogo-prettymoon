@@ -430,7 +430,6 @@ function crearTarjeta(producto) {
 // ============================================
 function mostrarProductos(categoriaFiltro) {
   categoriaActual = categoriaFiltro;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
   const grid = document.getElementById("grid-productos");
   grid.innerHTML = "";
 
@@ -501,16 +500,18 @@ function configurarFiltros() {
       botones.forEach(b => b.classList.remove("activo"));
       boton.classList.add("activo");
       mostrarProductos(boton.dataset.categoria);
+      window.scrollTo({top: 0, behavior: "smooth"});
     });
   });
 
   // Dropdown móvil
-  const dropdownItems = document.querySelectorAll(".dropdown-item");
+  const dropdownItems = document.querySelectorAll(".dropdown-item, .filtro-pc-item");
   dropdownItems.forEach(item => {
     item.addEventListener("click", () => {
       dropdownItems.forEach(i => i.classList.remove("activo-dropdown"));
       item.classList.add("activo-dropdown");
       mostrarProductos(item.dataset.categoria);
+      window.scrollTo({top: 0, behavior: "smooth"});
     });
   });
 }
