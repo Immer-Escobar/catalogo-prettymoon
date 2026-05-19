@@ -1,7 +1,8 @@
 // ============================================
-// TU NÚMERO DE WHATSAPP
+// Constantes globales
 // ============================================
 const WHATSAPP = "50379443225";
+let categoriaActual = "todos";
 
 // ============================================
 // LISTA DE PRODUCTOS
@@ -428,6 +429,7 @@ function crearTarjeta(producto) {
 // FUNCIÓN: Mostrar productos según categoría
 // ============================================
 function mostrarProductos(categoriaFiltro) {
+  categoriaActual = categoriaFiltro;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   const grid = document.getElementById("grid-productos");
   grid.innerHTML = "";
@@ -435,6 +437,37 @@ function mostrarProductos(categoriaFiltro) {
   const filtrados = categoriaFiltro === "todos"
     ? productos
     : productos.filter(p => p.categoria === categoriaFiltro);
+
+    const breadcrumb = document.getElementById("breadcrumbCategoria");
+
+    if (categoriaFiltro !== "todos") {
+
+      let nombreCategoria = "";
+
+      switch(categoriaFiltro) {
+        case "labios":
+          nombreCategoria = "Labios";
+          break;
+
+        case "rostro":
+          nombreCategoria = "Rostro";
+          break;
+
+        case "ojos":
+          nombreCategoria = "Ojos";
+          break;
+
+        case "skin":
+          nombreCategoria = "Skin Care";
+          break;
+      }
+
+      breadcrumb.innerHTML = `/ ${nombreCategoria}`;
+
+    } else {
+
+      breadcrumb.innerHTML = "";
+    }
 
   if (filtrados.length === 0) {
     grid.innerHTML = `<p class="sin-resultados">No hay productos en esta categoría aún.</p>`;
@@ -481,6 +514,47 @@ function configurarFiltros() {
     });
   });
 }
+
+// ============================================
+// LOGO HOME
+// ============================================
+
+document.getElementById("logoHome").addEventListener("click", (e) => {
+
+  e.preventDefault();
+
+  // Si hay filtro activo → volver a todos
+  if (categoriaActual !== "todos") {
+
+    mostrarProductos("todos");
+
+    // Reset botones PC
+    document.querySelectorAll(".filtro").forEach(btn => {
+      btn.classList.remove("activo");
+
+      if (btn.dataset.categoria === "todos") {
+        btn.classList.add("activo");
+      }
+    });
+
+    // Reset dropdown móvil
+    document.querySelectorAll(".dropdown-item").forEach(item => {
+      item.classList.remove("activo-dropdown");
+
+      if (item.dataset.categoria === "todos") {
+        item.classList.add("activo-dropdown");
+      }
+    });
+
+  } else {
+
+    // Si ya está en todos → solo subir
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+});
 
 // ============================================
 // INICIO
