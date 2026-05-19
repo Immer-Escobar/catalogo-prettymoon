@@ -330,7 +330,10 @@ function crearTarjeta(producto) {
   // Construir los slides
   const slides = producto.img.map((src, i) => `
     <div class="carousel-item ${i === 0 ? 'active' : ''}">
-      <img src="${src}" class="tarjeta-imagen" alt="${producto.nombre}" />
+      <img src="${src}" class="tarjeta-imagen modal-trigger" 
+      data-index="${i}"
+      data-id="${producto.id}"
+      alt="${producto.nombre}" />
     </div>
   `).join("");
 
@@ -408,6 +411,16 @@ function crearTarjeta(producto) {
     }
   });
 
+  // Abrir modal al hacer clic en la imagen (solo móvil)
+  tarjeta.querySelectorAll(".modal-trigger").forEach(img => {
+    img.addEventListener("click", () => {
+      if (window.innerWidth <= 600) {
+        const indice = parseInt(img.dataset.index);
+        abrirModalProducto(producto, indice);
+      }
+    });
+  });
+
   return tarjeta;
 }
 
@@ -480,7 +493,8 @@ const modalBienvenida = new bootstrap.Modal(document.getElementById("modalBienve
 modalBienvenida.show();
 
 // Configurar enlace de WhatsApp en el footer
-document.querySelector(".footer-whatsapp").href = `https://wa.me/${WHATSAPP}`;
+const mensajeFooter = 'Hola Pretty Moon! 💜 Me gustaría obtener más información sobre tus productos.';
+document.querySelector(".footer-whatsapp").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensajeFooter)}`;
 
 // Botón volver arriba
 const btnArriba = document.getElementById("btnArriba");
@@ -496,3 +510,34 @@ window.addEventListener("scroll", () => {
 btnArriba.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+/*=================MODAL DEL PRODUCTO====================*/
+function abrirModalProducto(producto,indiceColor){
+
+  const imgBox = document.querySelector(".modal-producto-imagen-box");
+  imgBox.innerHTML = `
+      <img src="${producto.img[indiceColor]}" 
+          class="modal-producto-imagen zoom-image" 
+          alt="${producto.nombre}" />
+  `;
+
+  document.getElementById("modalProductoCategoria").textContent = producto.categoria;
+  document.getElementById("modalProductoNombre").textContent = producto.nombre;
+  document.getElementById("modalProductoColor").textContent = producto.colores[indiceColor];
+  document.getElementById("modalProductoDescripcion").textContent = producto.descripcion;
+  document.getElementById("modalProductoPrecio").textContent = producto.precio;
+
+   const btnWa = document.getElementById("modalProductoBtn");
+   if (producto.agotado[indiceColor]) {
+    btnWa.textContent = "Agotado";
+    btnWa.classList.add("btn-agotado");
+    btnWa.href = "#";
+   } else {
+    btnWa.textContent = "Pedir por WhatsApp";
+    btnWa.classList.remove("btn-agotado");
+    btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[indiceColor]);
+   }
+
+   const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
+   modal.show();
+}
