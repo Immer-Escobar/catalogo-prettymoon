@@ -214,7 +214,7 @@ header {
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 4rem;
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .grid-productos {
@@ -458,7 +458,7 @@ footer {
    RESPONSIVE — pantallas pequeñas
    ============================================ */
 @media (max-width: 600px) {
-  
+
   /*Header en fila*/
   header {
     flex-direction: row;
