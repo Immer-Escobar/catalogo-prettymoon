@@ -21,7 +21,7 @@ const productos = [
       "img/pink promise.jpg"
     ],
     colores: ["Suave Muave", "Berry Well", "Cheeky Lychee", "Pink Promise"],
-    agotado: [false, false, false, false]
+    agotado: [true, false, false, false]
   },
   {
     id: 2,
@@ -29,7 +29,9 @@ const productos = [
     categoria: "labios",
     descripcion: "Te da un brillo intenso con color irresistible y efecto jugoso que realza tus labios al instante.",
     precio: "$7.00",
-    img: ["img/Cherry bomb.jpg", "img/Moody.jpg", "img/Black cherry.jpg"],
+    img: ["img/Cherry bomb.jpg", 
+          "img/Moody.jpg", 
+          "img/Black cherry.jpg"],
     colores: ["Cherry Bomb", "Moody", "Black Cherry"],
     agotado: [false, false, false]
   },
@@ -49,9 +51,12 @@ const productos = [
     categoria: "rostro",
     descripcion: "3-1 para labios, mejillas y ojos, facil de aplicar y perfecto para retoques rapidos.  ",
     precio: "$10.00",
-    img: ["img/Bronzed cherry.jpg", "img/Sparkling rose.jpg", "img/Luminous berry.jpg", "img/Multistick Glimmering Guava.jpg"],
+    img: ["img/Bronzed cherry.jpg", 
+          "img/Sparkling rose.jpg", 
+          "img/Luminous berry.jpg", 
+          "img/Multistick Glimmering Guava.jpg"],
     colores: ["Bronzed Cherry", "Sparkling Rose", "Luminous Berry", "Glimmering Guava"],
-    agotado: [false, false, false, false]
+    agotado: [true, false, false, false]
   },
   {
     id: 5,
@@ -61,7 +66,7 @@ const productos = [
     precio: "$14.00",
     img: ["img/Camo contorno.jpg"],
     colores: ["3 Light"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 6,
@@ -69,7 +74,10 @@ const productos = [
     categoria: "labios",
     descripcion: "Color ligero que se fija por horas y deja un acabado natural sin resecar.",
     precio: "$12.00",
-    img: ["img/Left on red tinta.jpg", "img/Cherry Cola tinta.jpg", "img/Plums up tinta.jpg", "img/Pink positive tinta.jpg"],
+    img: ["img/Left on red tinta.jpg", 
+          "img/Cherry Cola tinta.jpg", 
+          "img/Plums up tinta.jpg", 
+          "img/Pink positive tinta.jpg"],
     colores: ["Left On Red", "Cherry Cola", "Plums Up", "Pink Positive"],
     agotado: [false, false, false, false]
   },
@@ -79,9 +87,11 @@ const productos = [
     categoria: "labios",
     descripcion: "Brillo con destellos que hidrata y dejas tus labios suaves, jugosos e irresistibles.",
     precio: "$14.00",
-    img: ["img/Super Neutral.jpg", "img/Citrine glam.jpg", "img/milky pink.jpg"],
+    img: ["img/Super Neutral.jpg", 
+          "img/Citrine glam.jpg", 
+          "img/milky pink.jpg"],
     colores: ["Super Neutral", "Citrine Glam", "Milky Pink"],
-    agotado: [false, false, false]
+    agotado: [true, true, false]
   },
   {
     id: 8,
@@ -91,7 +101,7 @@ const productos = [
     precio: "$13.00",
     img: ["img/Cocoa BLUSH.jpg"],
     colores: ["Cocoa"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 9,
@@ -99,9 +109,13 @@ const productos = [
     categoria: "rostro",
     descripcion: "Cobertura alta con hidratacion que suaviza e ilumina al instante.",
     precio: "$14.00",
-    img: ["img/Corrector.jpg"],
-    colores: ["Camo"],
-    agotado: [false]
+    img: ["img/Corrector.jpg",
+          "img/Light Ivory.jpg",
+          "img/Medium Sand.jpg",
+          "img/Light Sand.jpg",
+          "img/Light Peach.jpg"],
+    colores: ["Medium Peach", "Light Ivory", "Medium Sand", "Light Sand", "Light Peach"],
+    agotado: [false, false, false, false, true]
   },
   {
     id: 10,
@@ -109,7 +123,9 @@ const productos = [
     categoria: "rostro",
     descripcion: "Neutraliza imperfecciones y unifica el tono para una piel mas uniforme.",
     precio: "$10.00",
-    img: ["img/corrector amarillo.jpg", "img/Corrector naranja.jpg", "img/Corrector peach.jpg"],
+    img: ["img/corrector amarillo.jpg", 
+          "img/Corrector naranja.jpg", 
+          "img/Corrector peach.jpg"],
     colores: ["Amarillo", "Naranja", "Peach"],
     agotado: [false, false, false]
   },
@@ -121,7 +137,7 @@ const productos = [
     precio: "$5.00",
     img: ["img/Delineador.jpg"],
     colores: ["Negro"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 12,
@@ -131,7 +147,7 @@ const productos = [
     precio: "$7.50",
     img: ["img/Delinear plumon.jpg"],
     colores: ["Negro"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 13,
@@ -159,9 +175,10 @@ const productos = [
     categoria: "rostro",
     descripcion: "Sella y suaviza con acabado mate y efecto filtro.",
     precio: "$13.00",
-    img: ["img/HD powder - Soft Luminance.jpg", "img/HD powder- Traslucido.jpg"],
+    img: ["img/HD powder - Soft Luminance.jpg", 
+          "img/HD powder- Traslucido.jpg"],
     colores: ["Soft Luminance", "Traslucido"],
-    agotado: [false, false]
+    agotado: [false, true]
   },
   {
     id: 16,
@@ -171,7 +188,7 @@ const productos = [
     precio: "$13.00",
     img: ["img/Iluminador Pink prism.jpg"],
     colores: ["Pink Prism"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 17,
@@ -179,9 +196,13 @@ const productos = [
     categoria: "labios",
     descripcion: "Hidratacion ligera con brillo jugoso para labios suaves al instante.",
     precio: "$14.00",
-    img: ["img/Jam session.jpg", "img/money mauve.jpg", "img/Rich brown.jpg", "img/Rose envy.jpg", "img/red delicious.jpg"],
+    img: ["img/Jam session.jpg", 
+          "img/money mauve.jpg", 
+          "img/Rich brown.jpg", 
+          "img/Rose envy.jpg", 
+          "img/red delicious.jpg"],
     colores: ["Jam Session", "Money Mauve", "Rich Brown", "Rose Envy", "Red Delicious"],
-    agotado: [false, false, false, false, false]
+    agotado: [true, true, true, false, false]
   },
   {
     id: 18,
@@ -211,7 +232,7 @@ const productos = [
     precio: "$14.00",
     img: ["img/16 Concealer.jpg.jpeg"],
     colores: ["Camo"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 21,
@@ -225,7 +246,7 @@ const productos = [
   },
   {
     id: 22,
-    nombre: "Big Mode",
+    nombre: "Big Mood",
     categoria: "ojos",
     descripcion: "Volumen intenso y pestañas impactantes en una sola aplicacion.",
     precio: "$8.00",
@@ -249,7 +270,8 @@ const productos = [
     categoria: "rostro",
     descripcion: "Sella y perfecciona con un acabado suave y natural.",
     precio: "$8.50",
-    img: ["img/Polvos LM.jpg", "img/Polvos sheer.jpg"],
+    img: ["img/Polvos LM.jpg", 
+          "img/Polvos sheer.jpg"],
     colores: ["Light Medium", "Sheer"],
     agotado: [false, false]
   },
@@ -261,7 +283,7 @@ const productos = [
     precio: "$15.00",
     img: ["img/Power Grip primer.jpg"],
     colores: ["Clear"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 26,
@@ -271,7 +293,7 @@ const productos = [
     precio: "$15.00",
     img: ["img/Primer Niacinamida.jpg"],
     colores: ["Clear"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 27,
@@ -291,7 +313,7 @@ const productos = [
     precio: "$15.00",
     img: ["img/Base 24 Medium Neutral.jpg"],
     colores: ["24 Medium Neutral"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 29,
