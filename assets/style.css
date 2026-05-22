@@ -458,7 +458,7 @@ footer {
    RESPONSIVE — pantallas pequeñas
    ============================================ */
 @media (max-width: 600px) {
-
+  
   /*Header en fila*/
   header {
     flex-direction: row;
@@ -476,10 +476,6 @@ footer {
 
   .header-marca a {
   text-decoration: none !important;
-  }
-
-  .tagline {
-    display: none;
   }
 
   .logo {
@@ -657,9 +653,16 @@ footer {
 
   .modal-producto-imagen-box {
     width: 100% !important;
-    padding: 1rem !important;
+    padding: 0 !important;
     min-height: 250px !important;
     border-bottom: 1px solid var(--borde);
+    background-color: var(--crema) !important;
+  }
+
+  #modalProductoCarrusel, 
+  #modalProductoCarrusel .carousel-inner, 
+  #modalProductoCarrusel .carousel-item {
+      background-color: var(--crema) !important; /* El color de tu variable --crema */
   }
 
   .modal-producto-imagen {

@@ -589,30 +589,50 @@ btnArriba.addEventListener("click", () => {
 /*=================MODAL DEL PRODUCTO====================*/
 function abrirModalProducto(producto,indiceColor){
 
-  const imgBox = document.querySelector(".modal-producto-imagen-box");
-  imgBox.innerHTML = `
-      <img src="${producto.img[indiceColor]}" 
-          class="modal-producto-imagen zoom-image" 
-          alt="${producto.nombre}" />
-  `;
+  const imgBox = document.getElementById("modalCarruselInner");
+  imgBox.innerHTML = "";
 
+  //Crear los slides del carrusel
+  producto.img.forEach((src,index) => {
+    imgBox.innerHTML += `
+      <div class="carousel-item ${index === indiceColor ? 'active' : ''}">
+        <img src="${src}" class="modal-producto-imagen" alt="${producto.nombre}"/>
+      </div> `;
+  });
+
+  //Funcion interna para actualizar textos
+  const actualizarInfo = (index) => {
+    document.getElementById("modalProductoColor").textContent = producto.colores[index];
+    const btnWa = document.getElementById("modalProductoBtn");
+        
+    if (producto.agotado[index]) {
+      btnWa.textContent = "Agotado";
+      btnWa.classList.add("btn-agotado");
+      btnWa.href = "#";
+    } else {
+        btnWa.textContent = "Pedir por WhatsApp";
+        btnWa.classList.remove("btn-agotado");
+        btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[index]);
+      }
+  };
+
+  //Cargar datos iniciales     
   document.getElementById("modalProductoCategoria").textContent = producto.categoria;
   document.getElementById("modalProductoNombre").textContent = producto.nombre;
-  document.getElementById("modalProductoColor").textContent = producto.colores[indiceColor];
   document.getElementById("modalProductoDescripcion").textContent = producto.descripcion;
   document.getElementById("modalProductoPrecio").textContent = producto.precio;
+  actualizarInfo(indiceColor);
 
-   const btnWa = document.getElementById("modalProductoBtn");
-   if (producto.agotado[indiceColor]) {
-    btnWa.textContent = "Agotado";
-    btnWa.classList.add("btn-agotado");
-    btnWa.href = "#";
-   } else {
-    btnWa.textContent = "Pedir por WhatsApp";
-    btnWa.classList.remove("btn-agotado");
-    btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[indiceColor]);
-   }
+  //Inicializar y escuchar cambios del carrusel
+  const modalElement = document.getElementById("modalProducto");
+  const carruselElement = document.getElementById("modalProductoCarrusel");
+  const carousel = new bootstrap.Carousel(carruselElement);
+    
+  carruselElement.addEventListener('slide.bs.carousel', (e) => {
+    actualizarInfo(e.to); // e.to es el índice del nuevo slide
+  });
 
-   const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
-   modal.show();
+  //Mostrar modal
+  const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
+  modal.show();
 }
