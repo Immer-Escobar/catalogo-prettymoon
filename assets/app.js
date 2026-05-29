@@ -21,7 +21,7 @@ const productos = [
       "img/pink promise.jpg"
     ],
     colores: ["Suave Muave", "Berry Well", "Cheeky Lychee", "Pink Promise"],
-    agotado: [true, false, false, false]
+    agotado: [true, false, false, true]
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const productos = [
           "img/Moody.jpg", 
           "img/Black cherry.jpg"],
     colores: ["Cherry Bomb", "Moody", "Black Cherry"],
-    agotado: [false, false, false]
+    agotado: [false, true, false]
   },
   {
     id: 3,
@@ -41,9 +41,10 @@ const productos = [
     categoria: "rostro",
     descripcion: "Color suave y moldeable que realza tus mejillas con un acabado natural y duradero.",
     precio: "$8.50",
-    img: ["img/Bright pink.jpg", "img/Blushing.jpg"],
+    img: ["img/Bright pink.jpg", 
+          "img/Blushing.jpg"],
     colores: ["Bright Pink", "Blushing"],
-    agotado: [false, false]
+    agotado: [false, true]
   },
   {
     id: 4,
@@ -56,7 +57,7 @@ const productos = [
           "img/Luminous berry.jpg", 
           "img/Multistick Glimmering Guava.jpg"],
     colores: ["Bronzed Cherry", "Sparkling Rose", "Luminous Berry", "Glimmering Guava"],
-    agotado: [true, false, false, false]
+    agotado: [true, true, false, false]
   },
   {
     id: 5,
@@ -91,7 +92,7 @@ const productos = [
           "img/Citrine glam.jpg", 
           "img/milky pink.jpg"],
     colores: ["Super Neutral", "Citrine Glam", "Milky Pink"],
-    agotado: [true, true, false]
+    agotado: [true, true, true]
   },
   {
     id: 8,
@@ -115,7 +116,7 @@ const productos = [
           "img/Light Sand.jpg",
           "img/Light Peach.jpg"],
     colores: ["Medium Peach", "Light Ivory", "Medium Sand", "Light Sand", "Light Peach"],
-    agotado: [false, false, false, false, true]
+    agotado: [true, false, false, false, true]
   },
   {
     id: 10,
@@ -202,7 +203,7 @@ const productos = [
           "img/Rose envy.jpg", 
           "img/red delicious.jpg"],
     colores: ["Jam Session", "Money Mauve", "Rich Brown", "Rose Envy", "Red Delicious"],
-    agotado: [true, true, true, false, false]
+    agotado: [true, true, true, false, true]
   },
   {
     id: 18,
@@ -273,7 +274,7 @@ const productos = [
     img: ["img/Polvos LM.jpg", 
           "img/Polvos sheer.jpg"],
     colores: ["Light Medium", "Sheer"],
-    agotado: [false, false]
+    agotado: [true, false]
   },
   {
     id: 25,
