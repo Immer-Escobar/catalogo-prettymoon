@@ -18,44 +18,53 @@
 <body>
     <header>
         <div class="header-inner">
-            <div class="header-marca">
-                <a href="#" id="logoHome">
-                    <h1 class="logo">
-                        <span class="logo-pretty">Pretty</span>
-                        <span class="logo-moon">Moon</span>
-                    </h1>
-                </a>
-                <span id="breadcrumbCategoria"></span>
-            </div>
-        </div>
+                <div class="header-marca">
+                    <a href="#" id="logoHome">
+                        <h1 class="logo">
+                            <span class="logo-pretty">Pretty</span>
+                            <span class="logo-moon">Moon</span>
+                        </h1>
+                    </a>
+                    <span id="breadcrumbCategoria"></span>
+                </div>
 
-        <!--Botones para Movil-->
-        <div class="filtro-mobile dropdown">
-            <button class="filtro-mobile-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                <img src="img/Luna 2.png" alt="Filtrar" class="filtro-mobile-logo" />
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" data-categoria="todos" style="font-weight: 700 !important;">Todos</a></li>
-                <li><a class="dropdown-item" data-categoria="labios">Labios</a></li>
-                <li><a class="dropdown-item" data-categoria="rostro">Rostro</a></li>
-                <li><a class="dropdown-item" data-categoria="ojos">Ojos</a></li>
-                <li><a class="dropdown-item" data-categoria="skin">Skin Care</a></li>
-            </ul>
-        </div>
+                <div class="header-acciones">
+                    <div class="header-carrito">
+                        <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalCarrito">
+                            <i class="bi bi-cart3" style="font-size: 1.5rem; color: white;"></i>
+                            <span id="contador-carrito" class="badge bg-danger">0</span>
+                        </button>
+                    </div>
 
-        <!--Filtros-->
-        <section class="filtros">
-            <!--Dropdown para PC-->
-            <div class="dropdown dropdown-pc">
-                <button class="filtro-pc-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Todos</button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item filtro-pc-item" data-categoria="labios">Labios</a></li>
-                    <li><a class="dropdown-item filtro-pc-item" data-categoria="rostro">Rostro</a></li>
-                    <li><a class="dropdown-item filtro-pc-item" data-categoria="ojos">Ojos</a></li>
-                    <li><a class="dropdown-item filtro-pc-item" data-categoria="skin">Skin Care</a></li>
-                </ul>
-            </div>
-        </section>
+                    <!--Botones para Movil-->
+                    <div class="filtro-mobile dropdown">
+                        <button class="filtro-mobile-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <img src="img/Luna 2.png" alt="Filtrar" class="filtro-mobile-logo" />
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" data-categoria="todos" style="font-weight: 700 !important;">Todos</a></li>
+                            <li><a class="dropdown-item" data-categoria="labios">Labios</a></li>
+                            <li><a class="dropdown-item" data-categoria="rostro">Rostro</a></li>
+                            <li><a class="dropdown-item" data-categoria="ojos">Ojos</a></li>
+                            <li><a class="dropdown-item" data-categoria="skin">Skin Care</a></li>
+                        </ul>
+                    </div>
+
+                    <!--Filtros-->
+                    <section class="filtros">
+                        <!--Dropdown para PC-->
+                        <div class="dropdown dropdown-pc">
+                            <button class="filtro-pc-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">Todos</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item filtro-pc-item" data-categoria="labios">Labios</a></li>
+                                <li><a class="dropdown-item filtro-pc-item" data-categoria="rostro">Rostro</a></li>
+                                <li><a class="dropdown-item filtro-pc-item" data-categoria="ojos">Ojos</a></li>
+                                <li><a class="dropdown-item filtro-pc-item" data-categoria="skin">Skin Care</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+        </div>
     </header>
 
     <main>
@@ -123,9 +132,28 @@
                         <p class="modal-producto-color" id="modalProductoColor"></p>
                         <p class="modal-producto-descripcion" id="modalProductoDescripcion"></p>
                         <p class="modal-producto-precio" id="modalProductoPrecio"></p>
-                        <a class="btn-whatsapp" id="modalProductoBtn" href="#" target="_blank">Pídelo aquí</a>
+                        <button class="btn-whatsapp" id="modalProductoBtn" onclick="agregarDesdeModal()">Agregar al Carrito</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCarrito" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tu Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="lista-carrito">
+                <!-- Aquí se listarán los productos -->
+            </div>
+            <div class="modal-footer text-center d-block">
+                <button class="btn btn-primary w-100" id="btn-enviar-pedido" onclick="enviarPedido()">
+                    Enviar Pedido
+                </button>
+            </div>
             </div>
         </div>
     </div>

@@ -41,18 +41,14 @@ body {
    ============================================ */
 header {
   background: linear-gradient(135deg, var(--lila) 0%, var(--lila) 50%, var(--morado) 100%);
-  padding: 1rem 1.5rem 0.8rem;
-  text-align: left;
+  padding: 1rem 3rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 1000;
-
-  backdrop-filter: blur(10px);
 }
 
 .header-logo {
@@ -64,9 +60,14 @@ header {
 .header-inner {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 5rem;
+}
+
+.header-acciones {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .header-marca {
@@ -112,11 +113,9 @@ header {
    FILTROS — visible en PC
    ============================================ */
 .filtros {
-  position: absolute;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
-  padding-right: 5rem;
+  position: static;
+  transform: none;
+  padding-right: 0;
 }
 
 .filtro {
@@ -476,6 +475,11 @@ footer {
 
   .header-marca a {
   text-decoration: none !important;
+  }
+
+  .header-acciones {
+    display: flex !important;
+    gap: 0.5rem;
   }
 
   .logo {
@@ -968,4 +972,142 @@ footer {
   font-weight: 600;
   color: var(--morado);
   margin: 0;
+}
+
+.header-carrito {
+  position: relative;
+}
+
+#contador-carrito {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff6b6b !important; /* Usamos tu color lila */
+  color: var(--crema);
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+/* --- Estilos para el Modal del Carrito --- */
+#modalCarrito .modal-content {
+  border-radius: 24px;
+  border: none;
+  background-color: var(--crema);
+  padding: 1rem;
+  box-shadow: 0 10px 40px rgba(102, 20, 107, 0.15);
+}
+
+#modalCarrito .modal-header {
+  border-bottom: 1px solid var(--borde);
+  color: var(--morado);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+/* Título del Modal */
+#modalCarrito .modal-header {
+  border-bottom: none;
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+#modalCarrito .modal-title {
+  font-family: 'Rekalgera', sans-serif;
+  font-size: 1.5rem;
+  color: var(--morado);
+} 
+
+#modalCarrito .modal-body {
+  max-height: 60vh; /* Ocupa máximo el 60% de la altura de la pantalla */
+  overflow-y: auto; /* Activa la barra de desplazamiento solo cuando sea necesario */
+  padding-right: 0.5rem; /* Espacio para que el scroll no tape el contenido */
+}
+
+/* Opcional: Estilizar la barra de scroll para que se vea bonita */
+#modalCarrito .modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+#modalCarrito .modal-body::-webkit-scrollbar-thumb {
+  background-color: var(--lila);
+  border-radius: 10px;
+}
+
+#modalCarrito .list-group-item {
+  border: 1px solid var(--borde);
+  border-radius: 16px !important;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--carbon);
+}
+
+.carrito-item-info {
+  flex: 1;
+}
+
+.carrito-item-nombre {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--morado);
+  margin: 0;
+}
+
+.carrito-item-detalles {
+  font-size: 0.8rem;
+  color: var(--gris);
+  margin: 0;
+}
+
+/* Controles de cantidad */
+.carrito-controles {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Botones dentro del carrito */
+.btn-cantidad {
+  background: var(--crema);    
+  border: 1px solid var(--borde);
+  color: var(--morado);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.btn-eliminar {
+  color: #ff6b6b;
+  margin-left: 0.5rem;
+  border: none;
+  background: none;
+}
+
+#modalCarrito .modal-footer {
+  border-top: none;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+/* Botón de Enviar Pedido */
+#btn-enviar-pedido {
+  background: var(--morado);
+  color: var(--blanco);
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: auto;
+  margin: 0 auto;
+}
+
+#btn-enviar-pedido:hover {
+  background: var(--morado-dark);
+  transform: scale(1.02);
+  font-weight: 600;
 }

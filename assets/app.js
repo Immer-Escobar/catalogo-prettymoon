@@ -3,6 +3,8 @@
 // ============================================
 const WHATSAPP = "50379443225";
 let categoriaActual = "todos";
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let productoEnModal = null;
 
 // ============================================
 // LISTA DE PRODUCTOS
@@ -116,7 +118,7 @@ const productos = [
           "img/Light Sand.jpg",
           "img/Light Peach.jpg"],
     colores: ["Medium Peach", "Light Ivory", "Medium Sand", "Light Sand", "Light Peach"],
-    agotado: [true, false, false, false, true]
+    agotado: [false, false, false, true, true]
   },
   {
     id: 10,
@@ -128,7 +130,7 @@ const productos = [
           "img/Corrector naranja.jpg", 
           "img/Corrector peach.jpg"],
     colores: ["Amarillo", "Naranja", "Peach"],
-    agotado: [false, false, false]
+    agotado: [false, true, false]
   },
   {
     id: 11,
@@ -158,7 +160,7 @@ const productos = [
     precio: "$8.00",
     img: ["img/Exfoliante de labios - Brown sugar.jpg"],
     colores: ["Brown Sugar"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 14,
@@ -179,7 +181,7 @@ const productos = [
     img: ["img/HD powder - Soft Luminance.jpg", 
           "img/HD powder- Traslucido.jpg"],
     colores: ["Soft Luminance", "Traslucido"],
-    agotado: [false, true]
+    agotado: [true, true]
   },
   {
     id: 16,
@@ -203,7 +205,7 @@ const productos = [
           "img/Rose envy.jpg", 
           "img/red delicious.jpg"],
     colores: ["Jam Session", "Money Mauve", "Rich Brown", "Rose Envy", "Red Delicious"],
-    agotado: [true, true, true, false, true]
+    agotado: [false, true, true, false, true]
   },
   {
     id: 18,
@@ -243,7 +245,7 @@ const productos = [
     precio: "$8.00",
     img: ["img/Mini bite Eyeshadow- Truffles.jpg"],
     colores: ["Truffles"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 22,
@@ -253,7 +255,7 @@ const productos = [
     precio: "$8.00",
     img: ["img/Mini mascara.jpg"],
     colores: ["Negro"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 23,
@@ -324,6 +326,26 @@ const productos = [
     precio: "$12.00",
     img: ["img/21 Light neutral.jpg"],
     colores: ["21 Light Neutral"],
+    agotado: [false]
+  },
+  {
+    id:30,
+    nombre: "Halo Glow Setting Powder",
+    categoria: "rostro",
+    descripcion: "Sella tu maquillaje con un acabado luminoso, logrando una mayor duracion.",
+    precio: "$16.00",
+    img: ["img/Halo-settingPowder.jpeg"],
+    colores: ["Fair Light"],
+    agotado: [false]
+  },
+  {
+    id:31,
+    nombre: "Lash XTNDR",
+    categoria: "ojos",
+    descripcion: "Alarga y define tus pestañas para una mirada impactante.",
+    precio: "$12.00",
+    img: ["img/Lash-XTNDR.jpeg"],
+    colores: ["Black"],
     agotado: [false]
   }
 ];
@@ -404,13 +426,15 @@ function crearTarjeta(producto) {
       <h2 class="nombre-producto">${producto.nombre}</h2>
       <p class="descripcion-producto">${producto.descripcion}</p>
       <p class="precio-producto">${producto.precio}</p>
-      <a class="btn-whatsapp ${primerColorAgotado ? 'btn-agotado' : ''}"
-        href="${primerColorAgotado ? '#' : mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[0])}"
+      <button class="btn-whatsapp ${primerColorAgotado ? 'btn-agotado' : ''}"
         id="btn-wa-${producto.id}"
-        target="_blank"
-        rel="noopener noreferrer">
-        ${primerColorAgotado ? 'Agotado' : 'Pedir por WhatsApp'}
-      </a>
+        onclick="agregarAlCarrito({
+          nombre: '${producto.nombre}',
+          precio: '${producto.precio}',
+          color: '${producto.colores[0]}' // Nota: esto es estático, luego ajustaremos
+        })">
+        ${primerColorAgotado ? 'Agotado' : 'Agregar al Carrito'}
+      </button>
     </div>
   `;
 
@@ -422,6 +446,14 @@ function crearTarjeta(producto) {
     etiqueta.textContent = producto.colores[e.to];
     const btnWa = tarjeta.querySelector(`#btn-wa-${producto.id}`);
 
+    btnWa.onclick = () => {
+      agregarAlCarrito({
+        nombre: producto.nombre,
+        precio: producto.precio,
+        color: producto.colores[e.to]
+      });
+    };
+
     if (producto.agotado[e.to]) {
       badgeSoldOut.style.display = "flex";
       btnWa.classList.add("btn-agotado");
@@ -431,7 +463,7 @@ function crearTarjeta(producto) {
       badgeSoldOut.style.display = "none";
       btnWa.classList.remove("btn-agotado");
       btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[e.to]);
-      btnWa.innerHTML = 'Pedir por WhatsApp';
+      btnWa.innerHTML = 'Agregar al Carrito';
     }
   });
 
@@ -585,6 +617,7 @@ document.getElementById("logoHome").addEventListener("click", (e) => {
 // ============================================
 configurarFiltros();
 mostrarProductos("todos");
+actualizarUI();
 
 // Abrir modal de bienvenida
 const modalBienvenida = new bootstrap.Modal(document.getElementById("modalBienvenida"));
@@ -611,7 +644,7 @@ btnArriba.addEventListener("click", () => {
 
 /*=================MODAL DEL PRODUCTO====================*/
 function abrirModalProducto(producto,indiceColor){
-
+  productoEnModal = producto; //Guardamos el producto actual
   const imgBox = document.getElementById("modalCarruselInner");
   imgBox.innerHTML = "";
 
@@ -633,7 +666,7 @@ function abrirModalProducto(producto,indiceColor){
       btnWa.classList.add("btn-agotado");
       btnWa.href = "#";
     } else {
-        btnWa.textContent = "Pedir por WhatsApp";
+        btnWa.textContent = "Agregar al Carrito";
         btnWa.classList.remove("btn-agotado");
         btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[index]);
       }
@@ -659,3 +692,136 @@ function abrirModalProducto(producto,indiceColor){
   const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
   modal.show();
 }
+
+function agregarDesdeModal() {
+  if (!productoEnModal) return;
+
+  //Obtenemos el color actual del carrusel del modal
+  const carrusel = document.getElementById("modalProductoCarrusel");
+  const activeItem = carrusel.querySelector(".carousel-item.active");
+  const index = Array.from(carrusel.querySelectorAll(".carousel-item")).indexOf(activeItem);
+
+  const productoParaCarrito = {
+    nombre: productoEnModal.nombre,
+    precio: productoEnModal.precio,
+    color: productoEnModal.colores[index]
+  };
+
+  agregarAlCarrito(productoParaCarrito);
+}
+
+/*-------------CARRITOOOOOO----------------*/
+function agregarAlCarrito(producto) {
+  // Buscamos si existe un producto con el mismo nombre y color
+  const IndiceExistente = carrito.findIndex(
+    item => item.nombre === producto.nombre && item.color === producto.color
+  );
+
+  if (IndiceExistente !== -1){
+     // Si existe, aumentamos la cantidad
+     carrito[IndiceExistente].cantidad = (carrito[IndiceExistente].cantidad || 1) + 1;
+  } else {
+    // Si no existe, lo agregamos con cantidad 1
+    producto.cantidad = 1;
+    carrito.push(producto);
+  }
+
+  guardarCarrito();
+  actualizarUI();
+}
+
+function eliminarDelCarrito(index) {
+  carrito.splice(index, 1);
+  guardarCarrito();
+  actualizarUI();
+}
+
+//Se guarda en localStorage
+function guardarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+//Generar mensaje de WhatsApp
+function generarMensajeWhatsApp() {
+  if (carrito.length === 0) return "";
+
+  let mensaje = "Hola, me gustaría pedir los siguientes productos: ";
+  let total = 0;
+
+  carrito.forEach(item => {
+    mensaje += `- ${item.nombre} (${item.color}), Cantidad:${item.cantidad}: ${item.precio}`;  
+    let precioNumerico = parseFloat(item.precio.replace('$', ''));
+    total += precioNumerico * item.cantidad;                                                  
+  });
+
+  mensaje += ` Total: $${total.toFixed(2)}¿Podrian confirmarme la disponibilidad?`;
+  return mensaje;
+}
+
+function enviarPedido() {
+
+  if(carrito.length === 0) {
+    alert("Tu carrito esta vacio. ¡Agrega tus productos favoritos de Pretty Moon primero!");
+    return;
+  }
+  const mensaje = generarMensajeWhatsApp();
+  const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+
+  window.open(url, '_blank');
+}
+
+function actualizarUI() {
+  // 1. Actualizar contador
+  const contador = document.getElementById('contador-carrito');
+  if (contador) {
+    contador.innerText = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  }
+
+  // 2. Renderizar lista en el modal
+  const listaCarrito = document.getElementById('lista-carrito');
+  if (!listaCarrito) return;
+
+  if (carrito.length === 0) {
+    listaCarrito.innerHTML = "<p class='text-center' style='color: var(--gris);'>Tu carrito esta vacio.</p>";
+    return;
+  }
+
+  let html = '<div class="list-group list-group-flush">';
+  carrito.forEach((item, index) => {
+    // Si item.cantidad es undefined, usamos 1
+    const cantidad = item.cantidad || 1; 
+    html += `
+      <div class="list-group-item">
+        <div class="carrito-item-info">
+          <p class="carrito-item-nombre">${item.nombre}</p>
+          <p class="carrito-item-detalles">${item.color} | ${item.precio}</p>
+        </div>
+          <div class="carrito-controles">
+            <button class="btn-cantidad" onclick="cambiarCantidad(${index}, -1)">-</button>
+            <span>${item.cantidad}</span>
+            <button class="btn-cantidad" onclick="cambiarCantidad(${index}, 1)">+</button>
+            <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+      </div>
+    `;
+  });
+  html += '</div>';
+  listaCarrito.innerHTML = html;
+}
+
+function cambiarCantidad(index, cambio) {
+  // Aseguramos que cantidad exista
+  carrito[index].cantidad = (carrito[index].cantidad || 1) + cambio;
+  
+  // Si la cantidad llega a 0, lo eliminamos
+  if (carrito[index].cantidad <= 0) {
+    eliminarDelCarrito(index);
+  } else {
+    guardarCarrito();
+    actualizarUI();
+  }
+}
+
+
