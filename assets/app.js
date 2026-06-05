@@ -710,6 +710,11 @@ function agregarDesdeModal() {
   agregarAlCarrito(productoParaCarrito);
 }
 
+document.getElementById('modalProductoBtn').addEventListener('click', function() {
+    agregarDesdeModal();
+});
+
+
 /*-------------CARRITOOOOOO----------------*/
 function agregarAlCarrito(producto) {
   // Buscamos si existe un producto con el mismo nombre y color
@@ -759,7 +764,6 @@ function generarMensajeWhatsApp() {
 }
 
 function enviarPedido() {
-
   if(carrito.length === 0) {
     alert("Tu carrito esta vacio. ¡Agrega tus productos favoritos de Pretty Moon primero!");
     return;
@@ -769,6 +773,10 @@ function enviarPedido() {
 
   window.open(url, '_blank');
 }
+
+document.getElementById('btn-enviar-pedido').addEventListener('click', function() {
+  enviarPedido(); //Esta es la funcion ya creada
+});
 
 function actualizarUI() {
   // 1. Actualizar contador
