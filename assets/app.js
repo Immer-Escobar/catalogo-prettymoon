@@ -765,9 +765,16 @@ function generarMensajeWhatsApp() {
 
 function enviarPedido() {
   if(carrito.length === 0) {
-    alert("Tu carrito esta vacio. ¡Agrega tus productos favoritos de Pretty Moon primero!");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Carrito Vacio',
+      text: '¡Agrega tus productos favoritos de Pretty Moon primero!',
+      confirmButtonColor: '#6f42c1',
+      confirmButtonText: 'Entendido!'
+    });
     return;
   }
+
   const mensaje = generarMensajeWhatsApp();
   const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
 
