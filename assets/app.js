@@ -797,10 +797,10 @@ function actualizarUI() {
           <p class="carrito-item-detalles">${item.color} | ${item.precio}</p>
         </div>
           <div class="carrito-controles">
-            <button class="btn-cantidad" onclick="cambiarCantidad(${index}, -1)">-</button>
-            <span>${item.cantidad}</span>
-            <button class="btn-cantidad" onclick="cambiarCantidad(${index}, 1)">+</button>
-            <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">
+            <button class="btn-cantidad" data-index="${index}" data-accion="-1">-</button>
+            <span class="mx-2">${item.cantidad}</span>
+            <button class="btn-cantidad" data-index="${index}" data-accion="1">+</button>
+            <button class="btn-eliminar" data-index="${index}">
               <i class="bi bi-trash"></i>
             </button>
           </div>
@@ -810,6 +810,23 @@ function actualizarUI() {
   html += '</div>';
   listaCarrito.innerHTML = html;
 }
+
+document.addEventListener('click', function(e) {
+   // Manejo de botones de cantidad (+ y -)
+   if(e.target.classList.contains('btn-cantidad')) {
+    const index = parseInt(e.target.getAttribute('data-index'));
+    const cambio = parseInt(e.target.getAttribute('data-accion'));
+    cambiarCantidad(index, cambio);
+   }
+
+   //Manejo de boton eliminar
+   if(e.target.classList.contains('btn-eliminar') || e.target.parentElement.classList,this.contains('btn-eliminar')) {
+    //Usamos closets para que detecte el click aunque este en <i>
+    const btn = e.target.closest('.btn-eliminar');
+    const index = parseInt(btn.getAttribute('data-index'));
+    eliminarDelCarrito(index);
+   }
+});
 
 function cambiarCantidad(index, cambio) {
   // Aseguramos que cantidad exista
