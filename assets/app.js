@@ -812,20 +812,23 @@ function actualizarUI() {
 }
 
 document.addEventListener('click', function(e) {
-   // Manejo de botones de cantidad (+ y -)
-   if(e.target.classList.contains('btn-cantidad')) {
+  //Validar que e.target exista
+   if(!e.target) return;
+
+  // 2. Manejo de botones de cantidad (+ y -)
+  if (e.target.classList && e.target.classList.contains('btn-cantidad')) {
     const index = parseInt(e.target.getAttribute('data-index'));
     const cambio = parseInt(e.target.getAttribute('data-accion'));
     cambiarCantidad(index, cambio);
-   }
+  }
 
-   //Manejo de boton eliminar
-   if(e.target.classList.contains('btn-eliminar') || e.target.parentElement.classList,this.contains('btn-eliminar')) {
-    //Usamos closets para que detecte el click aunque este en <i>
-    const btn = e.target.closest('.btn-eliminar');
-    const index = parseInt(btn.getAttribute('data-index'));
+  //3.Manejo de boton eliminar
+  // Usamos ?. para evitar errores si el elemento no tiene parentElement
+  const btnEliminar = e.target.closest('.btn-eliminar');
+  if (btnEliminar) {
+    const index = parseInt(btnEliminar.getAttribute('data-index'));
     eliminarDelCarrito(index);
-   }
+  }
 });
 
 function cambiarCantidad(index, cambio) {
