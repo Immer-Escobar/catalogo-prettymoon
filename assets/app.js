@@ -750,7 +750,7 @@ function guardarCarrito() {
 function generarMensajeWhatsApp() {
   if (carrito.length === 0) return "";
 
-  let mensaje = "Hola Pretty Moon 💜✨\n\n";
+  let mensaje = "Hola, Pretty Moon 💜✨\n";
   mensaje += "Me gustaría realizar el siguiente pedido:\n\n";
 
   let total = 0;
