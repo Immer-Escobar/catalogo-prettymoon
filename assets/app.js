@@ -765,12 +765,17 @@ function generarMensajeWhatsApp() {
 
 function enviarPedido() {
   if(carrito.length === 0) {
-    Swal.fire({
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    });
+
+    Toast.fire({
       icon: 'warning',
-      title: 'Carrito Vacio',
-      text: '¡Agrega tus productos favoritos de Pretty Moon primero!',
-      confirmButtonColor: '#6f42c1',
-      confirmButtonText: 'Entendido!'
+      title: 'Tu carrito esta vacio'
     });
     return;
   }
