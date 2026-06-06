@@ -750,16 +750,23 @@ function guardarCarrito() {
 function generarMensajeWhatsApp() {
   if (carrito.length === 0) return "";
 
-  let mensaje = "Hola, me gustaría pedir los siguientes productos: ";
+  let mensaje = "Hola Pretty Moon 💜✨\n\n";
+  mensaje += "Me gustaría realizar el siguiente pedido:\n\n";
+
   let total = 0;
 
-  carrito.forEach(item => {
-    mensaje += `- ${item.nombre} (${item.color}), Cantidad:${item.cantidad}: ${item.precio}`;  
+  carrito.forEach(item => { 
     let precioNumerico = parseFloat(item.precio.replace('$', ''));
-    total += precioNumerico * item.cantidad;                                                  
+    total += precioNumerico * item.cantidad;
+    
+    mensaje += `- 💜${item.nombre} (${item.color})\n`;
+    mensaje += `  - Cantidad: ${item.cantidad}\n`;
+    mensaje += `  - Precio: ${item.precio}\n\n`;
   });
 
-  mensaje += ` Total: $${total.toFixed(2)}¿Podrian confirmarme la disponibilidad?`;
+  mensaje += ` Total: $${total.toFixed(2)}\n\n`;
+  mensaje += `¿Podrían confirmarme la disponibilidad?⭐`;
+
   return mensaje;
 }
 
