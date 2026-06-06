@@ -759,7 +759,7 @@ function generarMensajeWhatsApp() {
     let precioNumerico = parseFloat(item.precio.replace('$', ''));
     total += precioNumerico * item.cantidad;
     
-    mensaje += `- 💜${item.nombre} (${item.color})\n`;
+    mensaje += ` 💜${item.nombre} (${item.color})\n`;
     mensaje += `  - Cantidad: ${item.cantidad}\n`;
     mensaje += `  - Precio: ${item.precio}\n\n`;
   });
