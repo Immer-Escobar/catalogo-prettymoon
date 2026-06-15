@@ -428,11 +428,6 @@ function crearTarjeta(producto) {
       <p class="precio-producto">${producto.precio}</p>
       <button class="btn-whatsapp ${primerColorAgotado ? 'btn-agotado' : ''}"
         id="btn-wa-${producto.id}"
-        onclick="agregarAlCarrito({
-          nombre: '${producto.nombre}',
-          precio: '${producto.precio}',
-          color: '${producto.colores[0]}' // Nota: esto es estático, luego ajustaremos
-        })">
         ${primerColorAgotado ? 'Agotado' : 'Agregar al Carrito'}
       </button>
     </div>
@@ -448,11 +443,11 @@ function crearTarjeta(producto) {
 
     btnWa.addEventListener("click", (event) => {
       event.preventDefault();
-      if(!producto.agotado[e.to]) {
+      if(!primerColorAgotado) {
         agregarAlCarrito({
           nombre: producto.nombre,
           precio: producto.precio,
-          color: producto.colores[e.to]
+          color: producto.colores[0]
         });
       }
     });
