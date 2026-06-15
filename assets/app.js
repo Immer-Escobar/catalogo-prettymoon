@@ -446,18 +446,20 @@ function crearTarjeta(producto) {
     etiqueta.textContent = producto.colores[e.to];
     const btnWa = tarjeta.querySelector(`#btn-wa-${producto.id}`);
 
-    btnWa.onclick = () => {
-      agregarAlCarrito({
-        nombre: producto.nombre,
-        precio: producto.precio,
-        color: producto.colores[e.to]
-      });
-    };
+    btnWa.addEventListener("click", (event) => {
+      event.preventDefault();
+      if(!producto.agotado[e.to]) {
+        agregarAlCarrito({
+          nombre: producto.nombre,
+          precio: producto.precio,
+          color: producto.colores[e.to]
+        });
+      }
+    });
 
     if (producto.agotado[e.to]) {
       badgeSoldOut.style.display = "flex";
       btnWa.classList.add("btn-agotado");
-      btnWa.href = "#";
       btnWa.textContent = "Agotado";
     } else {
       badgeSoldOut.style.display = "none";
