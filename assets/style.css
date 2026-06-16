@@ -600,6 +600,18 @@ footer {
     padding: 0.5rem !important;
     font-size: 0.78rem !important;
     margin-top: 0.4rem !important;
+    transition: none !important;
+  }
+
+  .btn-whatsapp:hover {
+    background-color: var(--lila) !important;
+    color: var(--morado) !important;
+  }
+
+  .btn-whatsapp:active {
+    background-color: var(--lila) !important;
+    color: var(--morado) !important;
+    transform: none !important;
   }
 
   .etiqueta-color {
