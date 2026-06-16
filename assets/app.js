@@ -428,6 +428,7 @@ function crearTarjeta(producto) {
       <p class="precio-producto">${producto.precio}</p>
       <button class="btn-whatsapp ${primerColorAgotado ? 'btn-agotado' : ''}"
         id="btn-wa-${producto.id}"
+        ${primerColorAgotado ? 'disabled' : ''}>
         ${primerColorAgotado ? 'Agotado' : 'Agregar al Carrito'}
       </button>
     </div>
@@ -436,31 +437,35 @@ function crearTarjeta(producto) {
   // Actualizar etiqueta y botón al cambiar slide
   const etiqueta = tarjeta.querySelector(".etiqueta-color");
   const badgeSoldOut = tarjeta.querySelector(".sold-out-badge-color");
+  const btnWa = tarjeta.querySelector(`#btn-wa-${producto.id}`);
+
+  let colorActualIndex = 0;
+
+  btnWa.addEventListener("click", () => {
+    if(!producto.agotado[colorActualIndex]) {
+      agregarAlCarrito({
+        nombre: producto.nombre,
+        precio: producto.precio,
+        color: producto.colores[colorActualIndex]
+      });
+    }
+  });
 
   tarjeta.querySelector(`#${carruselId}`).addEventListener("slide.bs.carousel", (e) => {
-    etiqueta.textContent = producto.colores[e.to];
-    const btnWa = tarjeta.querySelector(`#btn-wa-${producto.id}`);
+    colorActualIndex = e.to;
 
-    btnWa.addEventListener("click", (event) => {
-      event.preventDefault();
-      if(!primerColorAgotado) {
-        agregarAlCarrito({
-          nombre: producto.nombre,
-          precio: producto.precio,
-          color: producto.colores[0]
-        });
-      }
-    });
+    etiqueta.textContent = producto.colores[e.to];
 
     if (producto.agotado[e.to]) {
       badgeSoldOut.style.display = "flex";
       btnWa.classList.add("btn-agotado");
       btnWa.textContent = "Agotado";
+      btnWa.disabled = true;
     } else {
       badgeSoldOut.style.display = "none";
       btnWa.classList.remove("btn-agotado");
-      btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[e.to]);
-      btnWa.innerHTML = 'Agregar al Carrito';
+      btnWa.textContent = "Agregar al Carrito";
+      btnWa.disabled = false;
     }
   });
 
@@ -492,9 +497,7 @@ function mostrarProductos(categoriaFiltro) {
     const breadcrumb = document.getElementById("breadcrumbCategoria");
 
     if (categoriaFiltro !== "todos") {
-
       let nombreCategoria = "";
-
       switch(categoriaFiltro) {
         case "labios":
           nombreCategoria = "Labios";
@@ -628,11 +631,7 @@ document.querySelector(".footer-whatsapp").href = `https://wa.me/${WHATSAPP}?tex
 const btnArriba = document.getElementById("btnArriba");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btnArriba.classList.add("visible");
-  } else {
-    btnArriba.classList.remove("visible");
-  }
+  btnArriba.classList.toggle("visible", window.scrollY > 300);
 });
 
 btnArriba.addEventListener("click", () => {
@@ -661,11 +660,11 @@ function abrirModalProducto(producto,indiceColor){
     if (producto.agotado[index]) {
       btnWa.textContent = "Agotado";
       btnWa.classList.add("btn-agotado");
-      btnWa.href = "#";
+      btnWa.disabled = true;
     } else {
         btnWa.textContent = "Agregar al Carrito";
         btnWa.classList.remove("btn-agotado");
-        btnWa.href = mensajeWhatsApp(producto.nombre, producto.precio, producto.colores[index]);
+        btnWa.disabled = false;
       }
   };
 
@@ -677,13 +676,16 @@ function abrirModalProducto(producto,indiceColor){
   actualizarInfo(indiceColor);
 
   //Inicializar y escuchar cambios del carrusel
-  const modalElement = document.getElementById("modalProducto");
   const carruselElement = document.getElementById("modalProductoCarrusel");
-  const carousel = new bootstrap.Carousel(carruselElement);
+  
+  const nuevoCarrusel = carruselElement.cloneNode(true);
+  carruselElement.parentNode.replaceChild(nuevoCarrusel, carruselElement);
     
-  carruselElement.addEventListener('slide.bs.carousel', (e) => {
-    actualizarInfo(e.to); // e.to es el índice del nuevo slide
+  nuevoCarrusel.addEventListener('slide.bs.carousel', (e) => {
+    actualizarInfo(e.to);
   });
+
+  new bootstrap.Carousel(nuevoCarrusel, {ride: 'carousel'});
 
   //Mostrar modal
   const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
@@ -698,13 +700,11 @@ function agregarDesdeModal() {
   const activeItem = carrusel.querySelector(".carousel-item.active");
   const index = Array.from(carrusel.querySelectorAll(".carousel-item")).indexOf(activeItem);
 
-  const productoParaCarrito = {
+  agregarAlCarrito({
     nombre: productoEnModal.nombre,
     precio: productoEnModal.precio,
     color: productoEnModal.colores[index]
-  };
-
-  agregarAlCarrito(productoParaCarrito);
+  });
 }
 
 document.getElementById('modalProductoBtn').addEventListener('click', function() {
@@ -721,15 +721,23 @@ function agregarAlCarrito(producto) {
 
   if (IndiceExistente !== -1){
      // Si existe, aumentamos la cantidad
-     carrito[IndiceExistente].cantidad = (carrito[IndiceExistente].cantidad || 1) + 1;
+     carrito[IndiceExistente].cantidad++;
   } else {
     // Si no existe, lo agregamos con cantidad 1
     producto.cantidad = 1;
     carrito.push(producto);
   }
-
   guardarCarrito();
   actualizarUI();
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1800,
+    timerProgressBar: true
+  });
+  Toast.fire({ icon: 'success', title: `${producto.nombre} agregado al carrito`});
 }
 
 function eliminarDelCarrito(index) {
@@ -749,21 +757,16 @@ function generarMensajeWhatsApp() {
 
   let mensaje = "Hola, Pretty Moon 💜✨\n";
   mensaje += "Me gustaría realizar el siguiente pedido:\n\n";
-
   let total = 0;
-
   carrito.forEach(item => { 
     let precioNumerico = parseFloat(item.precio.replace('$', ''));
     total += precioNumerico * item.cantidad;
-    
     mensaje += ` 💜${item.nombre} (${item.color})\n`;
     mensaje += `  - Cantidad: ${item.cantidad}\n`;
     mensaje += `  - Precio: ${item.precio}\n\n`;
   });
-
   mensaje += ` Total: $${total.toFixed(2)}\n\n`;
   mensaje += `¿Podrían confirmarme la disponibilidad?⭐`;
-
   return mensaje;
 }
 
@@ -783,16 +786,12 @@ function enviarPedido() {
     });
     return;
   }
-
   const mensaje = generarMensajeWhatsApp();
   const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-
   window.open(url, '_blank');
 }
 
-document.getElementById('btn-enviar-pedido').addEventListener('click', function() {
-  enviarPedido(); //Esta es la funcion ya creada
-});
+document.getElementById('btn-enviar-pedido').addEventListener('click', enviarPedido);
 
 function actualizarUI() {
   // 1. Actualizar contador
@@ -812,8 +811,6 @@ function actualizarUI() {
 
   let html = '<div class="list-group list-group-flush">';
   carrito.forEach((item, index) => {
-    // Si item.cantidad es undefined, usamos 1
-    const cantidad = item.cantidad || 1; 
     html += `
       <div class="list-group-item">
         <div class="carrito-item-info">
@@ -867,5 +864,3 @@ function cambiarCantidad(index, cambio) {
     actualizarUI();
   }
 }
-
-
