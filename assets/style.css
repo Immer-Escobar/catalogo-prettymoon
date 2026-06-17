@@ -149,6 +149,20 @@ header {
   display: none;
 }
 
+.luna-menu-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 4px 10px 4px 6px;
+}
+
+.luna-menu-wrap i {
+  color: var(--blanco);
+  font-size: 11px;
+}
+
 /* Botón con logo para móvil — oculto en PC */
 .filtro-mobile {
   display: none;
