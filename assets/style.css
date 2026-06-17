@@ -731,6 +731,19 @@ footer {
   main {
     padding-top: 2rem !important;
   }
+
+  /*-----SMS de agregado al carrito*/
+  #notif-carrito-container {
+    top: 80px;
+    right: 12px;
+    left: 12px;
+    align-items: center;
+  }
+
+  .notif-carrito {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 /* ============================================
@@ -1122,4 +1135,66 @@ footer {
   background: var(--morado-dark);
   transform: scale(1.02);
   font-weight: 600;
+}
+
+/*Notificacion de agregado al carrito*/
+#notif-carrito-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.notif-carrito {
+  background: var(--blanco);
+  border-left: 3px solid var(--morado);
+  border-radius: 10px;
+  padding: 14px 16px;
+  max-width: 280px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transform: translateX(60px);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.notif-carrito.activa {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.notif-carrito .notif-icono {
+  width: 36px;
+  height: 36px;
+  background: var(--borde);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notif-carrito .notif-icono i {
+  font-size: 20px;
+  color: var(--morado);
+}
+
+.notif-carrito .notif-nombre {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--morado-dark);
+  margin: 0;
+}
+
+.notif-carrito .notif-sub {
+  font-size: 12px;
+  color: var(--gris);
+  margin: 2px 0 0;
 }

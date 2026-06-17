@@ -730,14 +730,40 @@ function agregarAlCarrito(producto) {
   guardarCarrito();
   actualizarUI();
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1800,
-    timerProgressBar: true
+  mostrarNotificacionCarrito(producto);
+}
+
+/*======================
+  Funcion notificacion de producto agregado
+============================*/
+function mostrarNotificacionCarrito(producto) {
+  const container = document.getElementById('notif-carrito-container');
+
+  const notif = document.createElement('div');
+  notif.className = 'notif-carrito';
+  notif.innerHTML = `
+    <div class="notif-icono">
+      <i class="bi bi-check-circle-fill"></i>
+    </div>
+    <div>
+      <p class="notif-nombre">${producto.nombre}</p>
+      <p class="notif-sub">${producto.color} · agregado al carrito</p>
+    </div>
+  `;
+
+  container.appendChild(notif);
+
+  // Forzar reflow para que la transición de entrada funcione
+  requestAnimationFrame(() => {
+    notif.classList.add('activa');
   });
-  Toast.fire({ icon: 'success', title: `${producto.nombre} agregado al carrito`});
+
+  // Quitarla después de 2.5s
+  setTimeout(() => {
+    notif.classList.remove('activa');
+    // Esperamos a que termine la animación de salida antes de eliminarla del DOM
+    setTimeout(() => notif.remove(), 350);
+  }, 2500);
 }
 
 function eliminarDelCarrito(index) {
