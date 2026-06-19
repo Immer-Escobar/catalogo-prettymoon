@@ -20,10 +20,11 @@ const productos = [
       "img/Suave muave.jpg",
       "img/Berry well.jpg",
       "img/Cheeky lychee.jpg",
-      "img/pink promise.jpg"
+      "img/pink promise.jpg",
+      "img/liquid-blush-peach-perfect.jpeg"
     ],
-    colores: ["Suave Muave", "Berry Well", "Cheeky Lychee", "Pink Promise"],
-    agotado: [true, false, false, true]
+    colores: ["Suave Muave", "Berry Well", "Cheeky Lychee", "Pink Promise", "Peach Perfect"],
+    agotado: [true, false, false, false, false]
   },
   {
     id: 2,
@@ -35,7 +36,7 @@ const productos = [
           "img/Moody.jpg", 
           "img/Black cherry.jpg"],
     colores: ["Cherry Bomb", "Moody", "Black Cherry"],
-    agotado: [false, true, false]
+    agotado: [false, false, false]
   },
   {
     id: 3,
@@ -46,7 +47,7 @@ const productos = [
     img: ["img/Bright pink.jpg", 
           "img/Blushing.jpg"],
     colores: ["Bright Pink", "Blushing"],
-    agotado: [false, true]
+    agotado: [false, false]
   },
   {
     id: 4,
@@ -59,7 +60,7 @@ const productos = [
           "img/Luminous berry.jpg", 
           "img/Multistick Glimmering Guava.jpg"],
     colores: ["Bronzed Cherry", "Sparkling Rose", "Luminous Berry", "Glimmering Guava"],
-    agotado: [true, true, false, false]
+    agotado: [false, false, false, false]
   },
   {
     id: 5,
@@ -80,9 +81,12 @@ const productos = [
     img: ["img/Left on red tinta.jpg", 
           "img/Cherry Cola tinta.jpg", 
           "img/Plums up tinta.jpg", 
-          "img/Pink positive tinta.jpg"],
-    colores: ["Left On Red", "Cherry Cola", "Plums Up", "Pink Positive"],
-    agotado: [false, false, false, false]
+          "img/Pink positive tinta.jpg",
+          "img/tintas-burgun-did.jpeg",
+          "img/tintas-so-petal.jpeg"
+        ],
+    colores: ["Left On Red", "Cherry Cola", "Plums Up", "Pink Positive", "Burgun-Did that", "So Petal"],
+    agotado: [false, false, false, false, false, false]
   },
   {
     id: 7,
@@ -92,9 +96,11 @@ const productos = [
     precio: "$14.00",
     img: ["img/Super Neutral.jpg", 
           "img/Citrine glam.jpg", 
-          "img/milky pink.jpg"],
-    colores: ["Super Neutral", "Citrine Glam", "Milky Pink"],
-    agotado: [true, true, true]
+          "img/milky pink.jpg",
+          "img/shimmer-lip-oil-princess-cut.jpeg"
+        ],
+    colores: ["Super Neutral", "Citrine Glam", "Milky Pink", "Princess Cut"],
+    agotado: [true, true, false, false]
   },
   {
     id: 8,
@@ -118,7 +124,7 @@ const productos = [
           "img/Light Sand.jpg",
           "img/Light Peach.jpg"],
     colores: ["Medium Peach", "Light Ivory", "Medium Sand", "Light Sand", "Light Peach"],
-    agotado: [false, false, false, true, true]
+    agotado: [false, true, false, false, false]
   },
   {
     id: 10,
@@ -140,7 +146,7 @@ const productos = [
     precio: "$5.00",
     img: ["img/Delineador.jpg"],
     colores: ["Negro"],
-    agotado: [true]
+    agotado: [false]
   },
   {
     id: 12,
@@ -150,7 +156,7 @@ const productos = [
     precio: "$7.50",
     img: ["img/Delinear plumon.jpg"],
     colores: ["Negro"],
-    agotado: [true]
+    agotado: [false]
   },
   {
     id: 13,
@@ -213,8 +219,10 @@ const productos = [
     categoria: "ojos",
     descripcion: "Define y rellena con trazos precisos para cejas naturales.",
     precio: "$6.50",
-    img: ["img/Lapiz de ceja.jpg"],
-    colores: ["Neutral Brown"],
+    img: ["img/Lapiz de ceja.jpg",
+          "img/lapiz-de-ceja-deep-brown.jpeg"
+        ],
+    colores: ["Neutral Brown", "Deep Brown"],
     agotado: [false]
   },
   {
@@ -243,9 +251,9 @@ const productos = [
     categoria: "ojos",
     descripcion: "Sombras compactas con alta pigmentacion para looks rapidos y perfectos.",
     precio: "$8.00",
-    img: ["img/Mini bite Eyeshadow- Truffles.jpg"],
-    colores: ["Truffles"],
-    agotado: [true]
+    img: ["img/mini-bite-eyeshadow-rose-water.jpeg"],
+    colores: ["Rose Water"],
+    agotado: [false]
   },
   {
     id: 22,
@@ -276,7 +284,7 @@ const productos = [
     img: ["img/Polvos LM.jpg", 
           "img/Polvos sheer.jpg"],
     colores: ["Light Medium", "Sheer"],
-    agotado: [true, false]
+    agotado: [false, false]
   },
   {
     id: 25,
