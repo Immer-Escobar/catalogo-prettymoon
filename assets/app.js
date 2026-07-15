@@ -24,7 +24,7 @@ const productos = [
       "img/liquid-blush-peach-perfect.jpeg"
     ],
     colores: ["Suave Muave", "Berry Well", "Cheeky Lychee", "Pink Promise", "Peach Perfect"],
-    agotado: [true, false, false, false, false]
+    agotado: [true, false, false, true, false]
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const productos = [
     img: ["img/Bright pink.jpg", 
           "img/Blushing.jpg"],
     colores: ["Bright Pink", "Blushing"],
-    agotado: [false, false]
+    agotado: [false, true]
   },
   {
     id: 4,
@@ -60,7 +60,7 @@ const productos = [
           "img/Luminous berry.jpg", 
           "img/Multistick Glimmering Guava.jpg"],
     colores: ["Bronzed Cherry", "Sparkling Rose", "Luminous Berry", "Glimmering Guava"],
-    agotado: [false, false, false, false]
+    agotado: [false, false, false, true]
   },
   {
     id: 5,
@@ -83,10 +83,11 @@ const productos = [
           "img/Plums up tinta.jpg", 
           "img/Pink positive tinta.jpg",
           "img/tintas-burgun-did.jpeg",
-          "img/tintas-so-petal.jpeg"
+          "img/tintas-so-petal.jpeg",
+          "img/tintas-actually-mauve.jpeg"
         ],
-    colores: ["Left On Red", "Cherry Cola", "Plums Up", "Pink Positive", "Burgun-Did that", "So Petal"],
-    agotado: [false, false, false, false, false, false]
+    colores: ["Left On Red", "Cherry Cola", "Plums Up", "Pink Positive", "Burgun-Did that", "So Petal", "Actually Mauve"],
+    agotado: [false, true, false, false, false, false, false]
   },
   {
     id: 7,
@@ -100,7 +101,7 @@ const productos = [
           "img/shimmer-lip-oil-princess-cut.jpeg"
         ],
     colores: ["Super Neutral", "Citrine Glam", "Milky Pink", "Princess Cut"],
-    agotado: [true, true, false, false]
+    agotado: [true, true, false, true]
   },
   {
     id: 8,
@@ -124,7 +125,7 @@ const productos = [
           "img/Light Sand.jpg",
           "img/Light Peach.jpg"],
     colores: ["Medium Peach", "Light Ivory", "Medium Sand", "Light Sand", "Light Peach"],
-    agotado: [false, true, false, false, false]
+    agotado: [false, false, false, false, false]
   },
   {
     id: 10,
@@ -211,7 +212,7 @@ const productos = [
           "img/Rose envy.jpg", 
           "img/red delicious.jpg"],
     colores: ["Jam Session", "Money Mauve", "Rich Brown", "Rose Envy", "Red Delicious"],
-    agotado: [false, true, true, false, true]
+    agotado: [true, true, true, false, true]
   },
   {
     id: 18,
@@ -220,10 +221,11 @@ const productos = [
     descripcion: "Define y rellena con trazos precisos para cejas naturales.",
     precio: "$6.50",
     img: ["img/Lapiz de ceja.jpg",
-          "img/lapiz-de-ceja-deep-brown.jpeg"
+          "img/lapiz-de-ceja-deep-brown.jpeg",
+          "img/lapiz-de-ceja-taupe.jpeg"
         ],
-    colores: ["Neutral Brown", "Deep Brown"],
-    agotado: [false]
+    colores: ["Neutral Brown", "Deep Brown", "Taupe"],
+    agotado: [false, false, false]
   },
   {
     id: 19,
@@ -273,7 +275,7 @@ const productos = [
     precio: "$13.00",
     img: ["img/Mist & Set - 60 ml.jpg"],
     colores: ["Clear"],
-    agotado: [false]
+    agotado: [true]
   },
   {
     id: 24,
@@ -304,7 +306,7 @@ const productos = [
     precio: "$15.00",
     img: ["img/Primer Niacinamida.jpg"],
     colores: ["Clear"],
-    agotado: [true]
+    agotado: [false]
   },
   {
     id: 27,
@@ -354,6 +356,16 @@ const productos = [
     precio: "$12.00",
     img: ["img/Lash-XTNDR.jpeg"],
     colores: ["Black"],
+    agotado: [false]
+  },
+  {
+    id: 32,
+    nombre: "Power Grip Matta Primer",
+    categoria: "rostro",
+    descripcion: "Controla el brillo y deja tu piel con un acabado mate y suave. Ideal para pieles grasas.",
+    precio: "$8.00",
+    img: ["img/primer-matte.jpeg"],
+    colores: ["Clear"],
     agotado: [false]
   }
 ];

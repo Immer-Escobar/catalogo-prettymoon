@@ -30,7 +30,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--crema);
+  background-color: var(--crema) !important;
   color: var(--carbon);
   min-height: 100vh;
   position: relative;
